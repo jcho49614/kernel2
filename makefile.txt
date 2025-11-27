@@ -1,0 +1,47 @@
+Understanding the basics of makefiles
+
+SHELL COMMAND EXECUTIONS:
+VAR!= --> execute shell command and stores output in VAR.
+VAR?= --> assign variable only if VAR is not set
+$(): Expanded form of a variable
+	EG: if cc=gcc, $(cc) = gcc. Always must be referenced as $()
+VAR= --> Lazy eval/expan, VAR is only applied ON DEFINITION (kind of like schrodinger?)
+VAR:= --> Evaluate right side IMMEDIATELY, store it into VAR IMMEDIATELY
+
+VAR:= is used to append values, too!
+FOR EXAMPLE,
+
+CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra.
+
+include /path/to/make.config --> imports another file
+
+backslash (\) --> multi-line variables
+
+Compilation pattern rules:
+
+.c.o: --> To build X.o from X.c
+	$< is first dependency
+	$@ is the target
+	-MD tells GCC to generate file.d
+
+.s.o: for .S files to .O files (same idea, syntax)
+
+
+FOR EXAMPLE:
+.c.o:
+    $(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
+
+.PHONY --> Always treated as commands
+
+Kernel build code example:
+myos.kernel: $(OBJS) $(ARCHDIR)/linker.ld
+    $(CC) -T $(ARCHDIR)/linker.ld -o $@ $(CFLAGS) $(LINK_LIST)
+    grub-file --is-x86-multiboot myos.kernel
+
+(has to be indented with real TAB, no spaces)
+
+clean:
+    rm -f myos.kernel
+    rm -f $(OBJS) *.o */*.o */*/*.o
+    rm -f $(OBJS:.o=.d) *.d */*.d */*/*.d
+(clean target --> removes all build artifacts)
