@@ -1,0 +1,62 @@
+I need to set a structure for the kernel so I don't go extremely off-track.
+
+meaty-skeleton/
+│
+├── build system/
+│   ├── build.sh                → full build orchestrator
+│   ├── clean.sh                → delete outputs
+│   ├── config.sh               → build environment vars
+│   ├── default-host.sh         → detects build target triplet
+│   ├── headers.sh              → installs headers to sysroot
+│   ├── iso.sh                  → builds bootable ISO (GRUB)
+│   ├── qemu.sh                 → runs QEMU with kernel
+│   └── target-triplet-to-arch.sh → maps triplet → arch
+│
+├── kernel/
+│   ├── Makefile                → kernel build rules
+│   ├── include/
+│   │   └── kernel/
+│   │       └── tty.h           → terminal API. Connects to tty.c later on and although doesnt directly conect to it manages to be the code to conect tty.h and tty.c and kernel.c. HOW? I DONT HAVE A SINGLE CLUE
+│   │
+│   ├── kernel
+│   │   └── kernel.c            → kernel_main() very short code lol goig to be longer soon enough
+│   │
+│   └── arch/
+│       └── i386/
+│           ├── boot.S          → multiboot entry → call kernel_main
+│           ├── vga.h           → VGA helpers + color enum
+│           ├── tty.c           → VGA text-mode terminal impl --> main tty.c HAS ALL THE FUNCTIONS. HOW WHY I DONT KNOW AHHHHHHH
+│           ├── linker.ld       → kernel memory layout
+│           └── make.config     → i386-specific Makefile settings
+└── .gitignore (root)           → ignore rules for repo
+
+
+
+1. create a boot.s
+	make sure to flag bit 0, 1 --> ALIGN, MEMMAP
+	set magic as 0x1BADB002
+	set checksum as -(0x1BADB002 + 0x3) for flags + magic
+	declare .multiboot .section, align 4 and call for MAGIC, FLAGS, CHECSUM
+	declare .section.bss and reserve 16384 memory
+	declare .section .text, globalize __start, make it a function, and start start in which you declare stack_top as esp and call kernel_main
+	Make sure to hang if kernel_main returns.
+
+2. create header files
+	primarily need two: vga.h and tty.h.
+	tty.h
+		Doesn't do the heavy lifting, just defines it for kernel.c. When compiled, the linker connects kernel.c (kernel.o) and tty.c (tty.o) making them basically work together with tty.h just making it so that kernel.c doesn't compile error during c - o. This is such a hacky workaround. I hate this with all my heart I spent an hour understanding what this meant. stack overflow clutch but I still hate this workaround with all my heart
+	vga.h
+		for enum vga_color. Includes all the colors and sets vga entry to the oddly specific "black background, grey foreground". Done in barebones but still kinda confusing
+
+3. create kernel.c
+	kernel.c is the main c code for the entire project. calls kernel_main() and is primary file that links boot.s with higher-level c code. currently all I have planned is a simple "hello world" execution, but things might change! (potential DOS like layout w/ command input and command output? I hope)
+
+4. create all the various dependencies.
+	boot.S
+		main boot code.
+	linker.ld
+		main linker code
+	all makefiles
+		makefile code
+	all the .shs
+		I got this from meaty skeleton. They're automated programs that are supposed to make my life easier. I'll think further if I want to implement these .sh codes or not.
