@@ -10,7 +10,7 @@
 
 static const size_t VGA_WIDTH=80;
 static const size_t VGA_HEIGHT=25;
-static uint16_t* const VGA_MEMORY = (uint16_t*) 0xB8000;
+static uint16_t* const VGA_MEMORY = (uint16_t*)0xB8000;
 
 static size_t terminal_row;
 static size_t terminal_column;
@@ -60,7 +60,7 @@ void terminal_scroll(void) {
 
     // Clear the last row
     for (int col = 0; col < VGA_WIDTH; col++) {
-        putentryat(' ', terminal_colorm col, VGA_HEIGHT - 1);
+        terminal_putentryat(' ', terminal_color, col, VGA_HEIGHT - 1);
     }
 }
 
@@ -77,7 +77,7 @@ what the hell man this aint it
 void terminal_putchar(char c){ //used for handling entry + scrolling,
 	int line; unsigned char uc = c;
 
-	if(c == "\n"){
+	if(c == '\n'){
 		terminal_column = 0;
 		if(++terminal_row == VGA_HEIGHT) {
 			terminal_scroll();
