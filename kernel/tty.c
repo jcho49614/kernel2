@@ -27,7 +27,6 @@ size_t strlen(const char* str) {
 	return len;
 }
 
-
 void terminal_initialize(void){ //for init the terminal
 	terminal_row = 0;
 	terminal_column = 0;

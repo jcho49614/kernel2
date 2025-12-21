@@ -8,4 +8,5 @@
 void kernel_main(void){
 	terminal_initialize();
 	terminal_writestring("hello, world!");
+	terminal_writestring("\nohmygoshitfinallyworks");
 }
