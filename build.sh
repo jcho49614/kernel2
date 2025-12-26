@@ -8,11 +8,11 @@ AS=i686-elf-as
 LD=i686-elf-ld
 OBJCOPY=i686-elf-objcopy
 
-SRC_KERNEL=../kernel
-SRC_ARCH=../arch
-BUILD_DIR=../build-files
-ISO_DIR=../iso
-ISO_IMG=../kernel.iso
+SRC_KERNEL=kernel
+SRC_ARCH=arch
+BUILD_DIR=build-files
+ISO_DIR=iso
+ISO_IMG=kernel.iso
 
 CFLAGS="-ffreestanding -O2 -Wall -Wextra -m32"
 LDFLAGS="-T ${SRC_ARCH}/linker.ld -nostdlib"
@@ -59,3 +59,6 @@ echo "Build complete!"
 echo "ELF: ${KERNEL_ELF}"
 echo "BIN: ${KERNEL_BIN}"
 echo "ISO: ${ISO_IMG}"
+
+echo "Running the ISO file..."
+qemu-system-i386 -cdrom kernel.iso

@@ -17,8 +17,8 @@ static size_t terminal_column;
 static uint8_t terminal_color;
 static uint16_t* terminal_buffer;
 
-#define background  VGA_COLOR_BLUE
 #define foreground  VGA_COLOR_LIGHT_GREY
+#define background  VGA_COLOR_BLACK
 
 size_t strlen(const char* str) {
 	size_t len = 0;

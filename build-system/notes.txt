@@ -1,1 +1,0 @@
-for .sh files that automate the process of building
