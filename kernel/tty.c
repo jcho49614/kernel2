@@ -7,6 +7,8 @@
 
 #include "vga.h"
 #include "tty.h"
+#include "keyboardio.h"
+#include "keyboard_polling.h"
 
 static const size_t VGA_WIDTH=80;
 static const size_t VGA_HEIGHT=25;

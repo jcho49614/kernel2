@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include "keyboardio.h"
+#include "keyboard_polling.h"
 
 #include "vga.h"
 
