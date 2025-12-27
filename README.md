@@ -13,6 +13,14 @@
   <li>Ill add more stuff here as I go</li>
 </ul>
 
+<h2>Requirements</h2>
+<ul>
+  <li>Any system running i686/x86 architecture (only works on those systems I haven't added ARM support/64bit support)</li>
+  <li>a usb (no installing stuff yet) > 1gb</li>
+  <li>like 20 mbs of ram I haven't checked yet but optimized for ram shortage these days</li>
+  <li>qemu-sysem-i386 (for the shell executable --> run.sh if you're insane enough to want to run it)</li>
+</ul>
+
 
 <h3>comments</h3>
 <h4>I'm going to add the specific build files here so I can use multiplatform I'm too lazy to download everything on all my laptops</h4>
