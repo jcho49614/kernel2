@@ -7,7 +7,7 @@ static inline unsigned char inb(unsigned short port){
 	return result;
 }
 
-static inline unsigned char outb(unsigned short port, unsigned short data){
+static inline void outb(unsigned short port, unsigned short data){
 	__asm__ volatile("outb %0, %1": :"a"(data), "Nd"(port)); //NO OUTPUT, ONLY INPUT, PUTTING VALUE OF =a INTO THE PORT
 }
 

@@ -13,8 +13,9 @@ SRC_ARCH=arch
 BUILD_DIR=build-files
 ISO_DIR=iso
 ISO_IMG=kernel.iso
+SRC_APPS=applications
 
-CFLAGS="-ffreestanding -O2 -Wall -Wextra -m32"
+CFLAGS='-ffreestanding -O2 -Wall -Wextra -m32'
 LDFLAGS="-T ${SRC_ARCH}/linker.ld -nostdlib"
 
 KERNEL_ELF=${BUILD_DIR}/kernel.elf
@@ -28,9 +29,14 @@ rm -f ${BUILD_DIR}/*.o ${KERNEL_ELF} ${KERNEL_BIN} ${ISO_IMG}
 echo "[1] Assembling boot.s..."
 ${AS} ${SRC_ARCH}/boot.s -o ${BUILD_DIR}/boot.o
 
-echo "[2] Compiling C sources..."
+echo "[2-1] Compiling C kernel..."
 for file in ${SRC_KERNEL}/*.c; do
     ${CC} ${CFLAGS} -c $file -o ${BUILD_DIR}/$(basename $file .c).o
+done
+
+echo "[2-2] Compiling C applications..."
+for file in ${SRC_APPS}/*.c; do
+    ${CC} ${CFLAGS} -I${SRC_KERNEL} -c $file -o ${BUILD_DIR}/$(basename $file .c).o
 done
 
 echo "[3] Linking..."
