@@ -3,6 +3,6 @@
 
 #include <tty.h>
 char* int_to_string(int num);
-int calc(const char* string);
+char* calc(const char* string);
 
 #endif

@@ -8,6 +8,7 @@
 
 #include "vga.h"
 
+
 void terminal_initialize(void);
 void terminal_putchar(char c);
 void terminal_setcolor(uint8_t color);

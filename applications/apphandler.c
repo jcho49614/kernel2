@@ -3,7 +3,8 @@
 //for different apps
 #include "calc.h"
 #include "helloworld.h"
-
+#include "echo.h"
+#include "man.h"
 
 //really has everything I need.
 
@@ -80,6 +81,10 @@ char* app_handler(const char* string) {
         return calc(string);
     else if(appnameparser(command, "helloworld") == 0)
     	return helloworld();
+    else if(appnameparser(command, "echo") == 0)
+        return echo(string);
+    else if(appnameparser(command, "man") == 0)
+        return man(string);
 
 
 

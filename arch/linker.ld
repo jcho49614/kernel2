@@ -1,13 +1,24 @@
 ENTRY(_start)
+
 SECTIONS
 {
     . = 1M;
     
-    .multiboot : { KEEP(*(.multiboot)) }
-    .text      : { *(.text) }
-    .rodata    : { *(.rodata) }
-    .data      : { *(.data) }
-    .bss       : { *(.bss) *(COMMON) }
+    .text ALIGN(4K) : {
+        *(.multiboot)  /* Put multiboot INSIDE .text */
+        *(.text)
+    }
+    
+    .rodata ALIGN(4K) : {
+        *(.rodata*)
+    }
+    
+    .data ALIGN(4K) : {
+        *(.data)
+    }
+    
+    .bss ALIGN(4K) : {
+        *(.bss)
+        *(COMMON)
+    }
 }
-
-/*apparantly i dont need aligning lmao*/
