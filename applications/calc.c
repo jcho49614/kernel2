@@ -96,10 +96,10 @@ char* calc(const char* string) {
     else if (operator == '-') result = fn - sn;
     else if (operator == '*') result = fn * sn;
     else if (operator == '/') {
-        if (sn == 0) return "Error: Division by zero";
+        if (sn == 0) return "CALC: Error: Division by zero";
         result = fn / sn;
     }
-    else return "Error: Invalid operator";
+    else return "CALC: Error: Invalid operator";
     
     return int_to_string(result);
 }

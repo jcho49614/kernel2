@@ -80,8 +80,11 @@ char* app_handler(const char* string) {
         return calc(string);
     else if(appnameparser(command, "helloworld") == 0)
     	return helloworld();
-    else if(appnameparser(command, "exit") == 0)
-    	acpi_shutdown(); 
 
-    return "Unknown command";
+
+
+    else if(appnameparser(command, "exit") == 0)
+    	acpi_shutdown();
+
+    return "KERNEL: Unknown command";
 }
