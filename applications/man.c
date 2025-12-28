@@ -33,7 +33,7 @@ char* man(const char* input){
 		NEW_LINE;
 		terminal_writestring("SYNTAX: calc (NUMBER1) (whitespace) (OPERATOR (+,-,*,/)) (whitespace) (NUMBER2) (enter)");
 		NEW_LINE; NEW_LINE; */
-		return "CALC HELP\n---------\nA basic calculator app. Has 4 operators: addition(+), subtraction(-), multiplication(*), and division(/).\nSYNTAX: calc (NUMBER1) (whitespace) (OPERATOR (+,-,*,/)) (whitespace) (NUMBER2) (enter)\n\n";
+		return "\nCALC HELP\n---------\nA basic calculator app. Has 4 operators: addition(+), subtraction(-), multiplication(*), and division(/).\nSYNTAX: calc (NUMBER1) (whitespace) (OPERATOR (+,-,*,/)) (whitespace) (NUMBER2) (enter)\n";
 	}
 
 
