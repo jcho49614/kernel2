@@ -10,8 +10,15 @@
   <li>Used GAS assembly for assembler</li>
   <li>Using GRUB for bootloader</li>
   <li>gcc 7.1.0, Binutils 2.28 (Lordmilko repo)</li>
-  <li>Ill add more stuff here as I go</li>
+  <li>constant polling for keyboard input(NO SHIFT)</li>
 </ul>
+
+<h2>Apps</h2>
+<ul>
+  <li>Calc: a simple calculator app</li>
+  <li>Echo: just echoing stuff</li>
+  <li>Helloworld: returns "Hello, World!"</li>
+  <li>Man: just a "help" thing. I didn't complete it yet</li>
 
 <h2>Requirements</h2>
 <ul>
@@ -25,3 +32,4 @@
 <h3>comments</h3>
 <h4>I'm going to add the specific build files here so I can use multiplatform I'm too lazy to download everything on all my laptops</h4>
 <h4>EDIT: I just realized that I don't have to make my own crosscompiler nevermind --> used lordmilko repo for crosscompiler </h4>
+<h4>I think I'm done as of 2026/1/3 cuz I want to rewrite the kernel in rust wish me luck</h4>
