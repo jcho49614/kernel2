@@ -19,6 +19,7 @@
   <li>Echo: just echoing stuff</li>
   <li>Helloworld: returns "Hello, World!"</li>
   <li>Man: just a "help" thing. I didn't complete it yet</li>
+</ul>
 
 <h2>Requirements</h2>
 <ul>
